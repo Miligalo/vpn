@@ -1262,3 +1262,14 @@ body {
 .owl-dot{
     display: none;
 }
+
+
+.ques{
+    display: flex;
+}
+
+.main_question{
+    border: 1px solid #F53855;
+    margin-left: 100px;
+    margin-bottom: 20px;
+}
