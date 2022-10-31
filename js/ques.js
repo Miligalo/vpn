@@ -1,6 +1,6 @@
 function createQues(e) {
-    let nameQues = document.querySelector('.name_ques').value;
-    let mainQues = `<div class="main_question" data-name="${nameQues}">
+     let nameQues = $(e.target).parent().parent().find('.name_ques').val();
+    let mainQues = `<div class="main_question card w-75 ques_style" data-name="${nameQues}">
                       <div class="ques_title">
                             <h1>${nameQues}</h1>
                          </div>
@@ -12,8 +12,11 @@ function createQues(e) {
                         </div>
                  <div id="question">
                  </div>`;
-    $('#ques').append(mainQues);
+    $(e.target).parent().parent().find('#ques').append(mainQues);
 }
+$(document).on('click','.ques',function (e){
+    createQues(e);
+});
 
 function createQuestion(e) {
     let nameQuestion = $(e.target).parent().parent().parent().find('.question_name').val();
@@ -28,16 +31,13 @@ function createQuestion(e) {
                                     <button type="submit" style="margin: auto" class="btn btn-primary ques create_answer">Создать ответ</button>
                                  </div>
                             </div>
-                            <div id="answer">
+                            <div id="answer" class="main_answer">
                              </div>
                         </div>`;
     $(e.target).parent().parent().parent().find('#question').append(addQuestion);
 }
 $(document).on('click','.create_question',function (e){
     createQuestion(e);
-});
-$(document).on('click','.create_answer',function (e){
-    createAnswer(e);
 });
 
 function createAnswer(e) {
@@ -49,8 +49,10 @@ function createAnswer(e) {
                            </label>
                     </div>`;
     $(e.target).parent().parent().parent().find('#answer').append(answer);
-    console.log($(e.target).parent());
 }
+$(document).on('click','.create_answer',function (e){
+    createAnswer(e);
+});
 
 function save(){
     let array = [];

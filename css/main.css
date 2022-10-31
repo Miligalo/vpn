@@ -1269,7 +1269,47 @@ body {
 }
 
 .main_question{
-    border: 1px solid #F53855;
     margin-left: 100px;
     margin-bottom: 20px;
+}
+
+.ques_style{
+    margin: auto;
+    margin-bottom: 30px;
+}
+
+.ques_title{
+    display: flex;
+    justify-content: center;
+}
+
+.question_add{
+    display: flex;
+    justify-content: center;
+}
+
+.save{
+    display: flex;
+}
+
+.question_title{
+    text-align: center;
+}
+
+.answer_add{
+    display: flex;
+    justify-content: center;
+}
+.question_content{
+    border-top: 1px solid #767676;
+}
+
+.answer_title{
+    margin-bottom: 15px;
+}
+
+.main_answer{
+    display: flex;
+    flex-direction: column;
+    margin-left: 230px;
 }
