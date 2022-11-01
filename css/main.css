@@ -1294,6 +1294,8 @@ body {
 
 .question_title{
     text-align: center;
+    display: flex;
+    justify-content: center;
 }
 
 .answer_add{
@@ -1312,4 +1314,15 @@ body {
     display: flex;
     flex-direction: column;
     margin-left: 230px;
+}
+
+.trash{
+    background: 0;
+    border: 0;
+    margin-top: 15px;
+    margin-left: 30px;
+}
+
+.question_trash{
+    margin-top: -5px;
 }
