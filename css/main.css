@@ -1326,3 +1326,11 @@ body {
 .question_trash{
     margin-top: -5px;
 }
+
+.dragging {
+    opacity:0.5;
+}
+
+.over {
+    border: 3px dashed black;
+}

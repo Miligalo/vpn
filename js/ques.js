@@ -1,6 +1,10 @@
+let id = 0;
+
 function createQues(e) {
+    id = id + 1;
+    console.log(id);
      let nameQues = $(e.target).parent().parent().find('.name_ques').val();
-    let mainQues = `<div class="main_question card w-75 ques_style" data-name="${nameQues}">
+    let mainQues = `<div id="${id}" class="main_question card w-75 ques_style card" draggable="true" data-name="${nameQues}">
                       <div class="ques_title">
                             <h1 id="case_name">${nameQues}</h1>
                             <div>
@@ -27,7 +31,6 @@ $(document).on('click','.ques',function (e){
 
 function createQuestion(e) {
     let nameQuestion = $(e.target).parent().parent().parent().find('.question_name').val();
-
     let addQuestion = `<div class="question_content" data-name="${nameQuestion}">
                             <div class="question_title">
                                 <h3 id="case">${nameQuestion}</h3>
@@ -54,7 +57,6 @@ $(document).on('click','.create_question',function (e){
 function createAnswer(e) {
     let element_question = $(e.target).parent().parent().parent().find('#case').text();
     let element_ques = $(e.target).parent().parent().parent().parent().parent().find('#case_name').text();
-    console.log(element_ques)
     let nameAnswer = $(e.target).parent().parent().parent().find('.answer_name').val();
     let answer = `<div class="answer_title" data-name="${nameAnswer}">
                           <label>
@@ -118,4 +120,8 @@ function save(){
             ques_array.push(ques_obj)
     });
     console.log(ques_array);
+}
+
+function init(){
+    dragula([document.querySelector("#ques")]);
 }
