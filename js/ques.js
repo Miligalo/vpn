@@ -1,12 +1,13 @@
-let id = 0;
-
+let id = 0
+let name_question = 'question_' + id;
 function createQues(e) {
     id = id + 1;
-    console.log(id);
-     let nameQues = $(e.target).parent().parent().find('.name_ques').val();
+    name_question = 'question_' + id;
+
+    let nameQues = $(e.target).parent().parent().find('.name_ques').val();
     let mainQues = `<div id="${id}" class="main_question card w-75 ques_style card" draggable="true" data-name="${nameQues}">
                       <div class="ques_title">
-                            <h1 id="case_name">${nameQues}</h1>
+                            <h1 id="case_name">${nameQues} <span class="handle1">Тяни</span></h1>
                             <div>
                                 <button type="submit" class="trash ques_trash">
                                     <i class="fa fa-trash" aria-hidden="true"></i>
@@ -21,19 +22,31 @@ function createQues(e) {
                             <button type="submit" style="margin: auto" class="btn btn-primary ques create_question">Создать вопрос</button>
                         </div>
                         </div>
-                 <div id="question">
+                 <div id="${name_question}"  class="question">
+                  <div>
                  </div>`;
     $(e.target).parent().parent().find('#ques').append(mainQues);
+
+    dragula([document.getElementById(name_question)], {
+        moves: function (el, container, handle) {
+            return handle.className === 'handle';
+        }
+    });
 }
 $(document).on('click','.ques',function (e){
     createQues(e);
 });
 
+let id_answer = 0;
+let name_answer = 'question_' + id_answer;
+
 function createQuestion(e) {
+    id_answer = id_answer + 1;
+    name_answer = 'question_' + id;
     let nameQuestion = $(e.target).parent().parent().parent().find('.question_name').val();
     let addQuestion = `<div class="question_content" data-name="${nameQuestion}">
                             <div class="question_title">
-                                <h3 id="case">${nameQuestion}</h3>
+                                <h3 id="case">${nameQuestion} <span class="handle">Тяни</span></h3>
                                 <button type="submit" class="trash question_trash">
                                     <i class="fa fa-trash" aria-hidden="true"></i>
                                 </button>
@@ -44,15 +57,23 @@ function createQuestion(e) {
                                     <button type="submit" style="margin: auto" class="btn btn-primary ques create_answer">Создать ответ</button>
                                  </div>
                             </div>
-                            <div id="answer" class="main_answer">
+                            <div id="${name_answer}" class="main_answer">
                              </div>
                         </div>`;
-    $(e.target).parent().parent().parent().find('#question').append(addQuestion);
+    $(e.target).parent().parent().parent().find('.question').append(addQuestion);
+
+    dragula([document.getElementById(name_answer)], {
+        moves: function (el, container, handle) {
+            return handle.className === 'handle2';
+        }
+    });
 }
 
 $(document).on('click','.create_question',function (e){
     createQuestion(e);
 });
+
+
 
 function createAnswer(e) {
     let element_question = $(e.target).parent().parent().parent().find('#case').text();
@@ -62,7 +83,7 @@ function createAnswer(e) {
                           <label>
                                 Верно?
                                     <input type="radio" name="${element_question} ${element_ques}" class="nice_checkbox" name="languages">
-                                     ${nameAnswer}
+                                     ${nameAnswer} <span class="handle2">Тяни</span>
                                     <span>
                                          <button type="submit" class="trash answer_trash">
                                              <i class="fa fa-trash" aria-hidden="true"></i>
@@ -70,7 +91,7 @@ function createAnswer(e) {
                                     </span>
                            </label>
                     </div>`;
-    $(e.target).parent().parent().parent().find('#answer').append(answer);
+    $(e.target).parent().parent().parent().find('.main_answer').append(answer);
 }
 $(document).on('click','.create_answer',function (e){
     createAnswer(e);
@@ -115,13 +136,21 @@ function save(){
             question_obj[question_title] = answer_array
             question_array.push(question_obj);
         });
-            let ques_obj = {}
-            ques_obj[ques_title] = question_array
-            ques_array.push(ques_obj)
+        let ques_obj = {}
+        ques_obj[ques_title] = question_array
+        ques_array.push(ques_obj)
     });
     console.log(ques_array);
 }
 
-function init(){
-    dragula([document.querySelector("#ques")]);
-}
+
+dragula([document.getElementById("ques")], {
+    moves: function (el, container, handle) {
+        return handle.className === 'handle1';
+    }
+});
+
+
+
+
+
